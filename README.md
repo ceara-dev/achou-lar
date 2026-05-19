@@ -1,59 +1,172 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <a href="https://laravel.com" target="_blank">
+        <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel">
+    </a>
 </p>
 
-## About Laravel
+# AchouLar
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Plataforma de gestão imobiliária com cadastro de imóveis, leads, contratos, pagamentos e controle de acesso RBAC — construída com Laravel 12 + Inertia + Vue 3.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| Camada | Tecnologia | Versão |
+|--------|-----------|--------|
+| Backend | Laravel | 12.x |
+| Frontend | Inertia + Vue 3 | v3 |
+| CSS | Tailwind CSS + DaisyUI | v4 / v5 |
+| Banco | MySQL | — |
+| Tempo real | Laravel Reverb + Echo | v1.10 |
+| Auditing | owen-it/laravel-auditing | v14 |
+| RBAC | spatie/laravel-permission | v7 |
+| Build | Vite | v7 |
 
-## Learning Laravel
+## Funcionalidades
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### Imóveis
+- Cadastro completo com categorias, tipo de negócio (venda/alugação/temporada)
+- Upload de fotos com drag & drop, reordenação e lightbox
+- Documentos anexados por imóvel
+- Controle de status: ativo, vendido, alugado, inativo
+- Soft delete
+- Contagem de visualizações
+- Destaque e aprovação
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Leads / Propostas
+- Captura de leads por imóvel com tipo de proposta (comprar/alugar)
+- Notificações em tempo real via WebSocket (Reverb)
 
-## Laravel Sponsors
+### Contratos e Pagamentos
+- Geração de contrato com upload de arquivo
+- Controle de pagamentos com parcelas, vencimentos e utilidades (água, energia, internet)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Empresas
+- Cadastro com CNPJ, planos (gratuito, starter, pro, business)
+- Associação de usuários por empresa
 
-### Premium Partners
+### RBAC (Controle de Acesso)
+- Roles: `admin`, `manager`, `user`
+- 16 permissões granulares cobrindo usuários, funções, permissões, auditoria, dashboard, empresas, imóveis e leads
+- Interface de gerenciamento de roles e permissões
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Auditoria
+- Rastreamento completo de alterações em entidades principais (usuários, imóveis, leads, empresas, etc.)
+- Histórico com valores antigos e novos, IP, user agent
 
-## Contributing
+### Painel Administrativo
+- Dashboard com métricas (usuários, funções, permissões, auditorias)
+- CRUD completo para imóveis, usuários, funções, empresas
+- Gerenciamento de leads com marcação de lido/não lido
+- Visualização de auditoria
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Tempo Real (Reverb)
+- Notificações instantâneas de novos leads
+- Canais privados por usuário
+- Integração com Laravel Echo + Pusher protocol
 
-## Code of Conduct
+## Pré-requisitos
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- PHP ^8.2
+- Composer
+- Node.js ^20.19
+- MySQL
+- Redis (opcional, para scaling do Reverb)
 
-## Security Vulnerabilities
+## Instalação
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+# Clone o repositório
+git clone <url-do-repo> achoular
+cd achoular
 
-## License
+# Instalar dependências PHP
+composer install
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Configurar ambiente
+cp .env.example .env
+php artisan key:generate
+
+# Configurar banco no .env e então:
+php artisan migrate
+
+# Instalar dependências frontend
+npm install
+
+# Build de produção
+npm run build
+```
+
+## Desenvolvimento
+
+```bash
+# Terminal 1 — Servidor Laravel
+php artisan serve
+
+# Terminal 2 — WebSocket (Reverb)
+php artisan reverb:start --debug
+
+# Terminal 3 — Vite (hot reload)
+npm run dev
+```
+
+Ou use o comando all-in-one:
+
+```bash
+composer run dev
+```
+
+## Estrutura de Diretórios
+
+```
+app/
+├── Enums/            # RoleEnum, PermissionEnum
+├── Events/           # NewLeadReceived (broadcast Reverb)
+├── Http/
+│   ├── Controllers/
+│   │   ├── Admin/    # Dashboard, User, Role, Permission,
+│   │   │             # Audit, Company, Lead, Contrato, Pagamento
+│   │   ├── AuthController
+│   │   ├── ImovelController
+│   │   └── LeadController
+│   └── Middleware/
+├── Models/           # User, Imovel, Lead, Categoria, TipoNegocio,
+│                     # Company, Contrato, Pagamento, Foto, Favorito, Documento
+└── Providers/
+resources/
+├── js/
+│   ├── Components/   # PropostaForm
+│   ├── Pages/        # Leadpage, Auth/*, Imovel/*, Admin/*
+│   ├── Layouts/      # Admin, Guest
+│   ├── composables/
+│   ├── echo.js       # Laravel Echo (WebSocket client)
+│   ├── app.js
+│   └── bootstrap.js
+├── css/
+│   └── app.css
+└── views/
+    └── app.blade.php
+routes/
+├── web.php
+├── channels.php      # Canais de broadcast (Reverb)
+└── console.php
+```
+
+## Testes
+
+```bash
+# Executar testes
+php artisan test
+
+# Com filtro
+php artisan test --filter=testName
+```
+
+## Formatação de Código
+
+```bash
+./vendor/bin/pint
+```
+
+## Licença
+
+MIT
